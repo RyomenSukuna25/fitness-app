@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>📊 Dashboard</h1>
+
+<form method="POST" action="/add_weight">
+    <input type="number" name="weight" placeholder="Enter weight (kg)" required>
+    <button type="submit">Add</button>
+</form>
+
+<h2>Your Progress</h2>
+<ul>
+    {% for p in progress %}
+        <li>{{ p.weight }} kg</li>
+    {% endfor %}
+</ul>
+{% endblock %}
