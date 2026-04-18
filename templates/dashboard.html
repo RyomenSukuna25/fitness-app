@@ -1,17 +1,46 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>📊 Dashboard</h1>
 
-<form method="POST" action="/add_weight">
-    <input type="number" name="weight" placeholder="Enter weight (kg)" required>
-    <button type="submit">Add</button>
-</form>
+<h1>🔥 Dashboard</h1>
 
-<h2>Your Progress</h2>
-<ul>
-    {% for p in progress %}
-        <li>{{ p.weight }} kg</li>
-    {% endfor %}
-</ul>
+<div class="card">
+    <h2>Current Weight</h2>
+    <p>{{ latest }} kg</p>
+</div>
+
+<div class="card">
+    <h3>Add Weight</h3>
+    <form method="POST" action="/add_weight">
+        <input type="number" step="0.1" name="weight" placeholder="Enter weight" required>
+        <button type="submit">Add</button>
+    </form>
+</div>
+
+<div class="card">
+    <h3>📊 Progress Graph</h3>
+    <canvas id="weightChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const weights = {{ data | map(attribute='weight') | list | tojson }};
+    const labels = weights.map((_, i) => "Entry " + (i + 1));
+
+    const ctx = document.getElementById('weightChart');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Weight',
+                data: weights,
+                borderWidth: 2
+            }]
+        }
+    });
+</script>
+
 {% endblock %}
