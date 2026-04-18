@@ -1,0 +1,13 @@
+<h2>Track Weight</h2>
+
+<form method="POST" action="/add_weight">
+    <input type="number" name="weight" placeholder="Enter weight" required>
+    <button type="submit">Save</button>
+</form>
+
+<h3>History</h3>
+<ul>
+    {% for row in data %}
+        <li>{{ row[1] }} kg</li>
+    {% endfor %}
+</ul>
