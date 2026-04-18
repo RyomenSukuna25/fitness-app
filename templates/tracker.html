@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>✅ Daily Tracker</h2>
+
+<form method="POST">
+    <label><input type="checkbox" name="diet"> Diet Done</label><br>
+    <label><input type="checkbox" name="workout"> Workout Done</label><br>
+    
+    <input type="number" name="water" placeholder="Water (liters)" required><br>
+    
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock %}

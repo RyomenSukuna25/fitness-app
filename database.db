@@ -1,6 +1,0 @@
-import sqlite3
-
-conn = sqlite3.connect("database.db")
-conn.execute("CREATE TABLE progress (id INTEGER PRIMARY KEY, weight REAL)")
-conn.commit()
-conn.close()
